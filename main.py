@@ -29,7 +29,7 @@ class Page:
         try:
             self.root.iconbitmap("icon.ico")
         except:
-            self.root.iconbitmap(pkgutil.get_data('.', "icon.ico"))
+            self.root.iconbitmap(pkgutil.get_data('asset', "icon.ico"))
         self.root.geometry("-150+50")
         # self.root.geometry("500x400-10+10")
         self.root.resizable(False, False)
@@ -129,8 +129,8 @@ class Game:
             self.BOMB = PhotoImage(file="bomb.png")
             self.FLAG = PhotoImage(file="flag.png")
         except:
-            self.BOMB = PhotoImage(data=pkgutil.get_data('.', "bomb.png"))
-            self.FLAG = PhotoImage(data=pkgutil.get_data('.', "flag.png"))
+            self.BOMB = PhotoImage(data=pkgutil.get_data('asset', "bomb.png"))
+            self.FLAG = PhotoImage(data=pkgutil.get_data('asset', "flag.png"))
         # Initiate flag Counter
         self.flag_counter = Counter(page.header, self.FLAG)
         self.flag_counter.pack(side=LEFT, padx=5)
@@ -235,8 +235,8 @@ class Activity:
             self.BOMB = PhotoImage(file="bomb.png")
             self.FLAG = PhotoImage(file="flag.png")
         except:
-            self.BOMB = PhotoImage(data=pkgutil.get_data('.', "bomb.png"))
-            self.FLAG = PhotoImage(data=pkgutil.get_data('.', "flag.png"))
+            self.BOMB = PhotoImage(data=pkgutil.get_data('asset', "bomb.png"))
+            self.FLAG = PhotoImage(data=pkgutil.get_data('asset', "flag.png"))
         # Bind left mouse button to coord function
         page.root.bind("<Button-1>", self.onClick)
         # Bind right mouse button to flag function
