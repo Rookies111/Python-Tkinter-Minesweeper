@@ -2,6 +2,7 @@
 #                    Import library                  #
 ######################################################
 import os
+import pkgutil
 from random import choices, randint
 from tkinter import *
 from tkinter import messagebox
@@ -25,7 +26,10 @@ class Page:
         self.root = Tk()
         # Setting title, icon, and size
         self.root.title("Minesweeper")
-        self.root.iconbitmap("icon.ico")
+        try:
+            self.root.iconbitmap("icon.ico")
+        except:
+            self.root.iconbitmap(pkgutil.get_data('.', "icon.ico"))
         self.root.geometry("-150+50")
         # self.root.geometry("500x400-10+10")
         self.root.resizable(False, False)
@@ -121,8 +125,12 @@ class Game:
     """
     def __init__(self):
         # Create bomb and flag picture
-        self.BOMB = PhotoImage(file="bomb.png")
-        self.FLAG = PhotoImage(file="flag.png")
+        try:
+            self.BOMB = PhotoImage(file="bomb.png")
+            self.FLAG = PhotoImage(file="flag.png")
+        except:
+            self.BOMB = PhotoImage(data=pkgutil.get_data('.', "bomb.png"))
+            self.FLAG = PhotoImage(data=pkgutil.get_data('.', "flag.png"))
         # Initiate flag Counter
         self.flag_counter = Counter(page.header, self.FLAG)
         self.flag_counter.pack(side=LEFT, padx=5)
@@ -223,8 +231,12 @@ class Activity:
     """
     def __init__(self):
         # Create bomb and flag picture
-        self.BOMB = PhotoImage(file="bomb.png")
-        self.FLAG = PhotoImage(file="flag.png")
+        try:
+            self.BOMB = PhotoImage(file="bomb.png")
+            self.FLAG = PhotoImage(file="flag.png")
+        except:
+            self.BOMB = PhotoImage(data=pkgutil.get_data('.', "bomb.png"))
+            self.FLAG = PhotoImage(data=pkgutil.get_data('.', "flag.png"))
         # Bind left mouse button to coord function
         page.root.bind("<Button-1>", self.onClick)
         # Bind right mouse button to flag function
@@ -500,8 +512,11 @@ class Slider(Frame):
 ######################################################
 def main():
     global page, board, action
-    # Set file directory to asset folder
-    os.chdir(os.path.abspath(os.getcwd()) + "/asset")
+    try:
+        # Set file directory to asset folder
+        os.chdir(os.path.abspath(os.getcwd()) + "/asset")
+    except:
+        pass
     # Initialize main game page
     page = Page()
     # Initialize game board
