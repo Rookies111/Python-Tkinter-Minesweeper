@@ -125,12 +125,8 @@ class Game:
     """
     def __init__(self):
         # Create bomb and flag picture
-        try:
-            self.BOMB = PhotoImage(file="bomb.png")
-            self.FLAG = PhotoImage(file="flag.png")
-        except:
-            self.BOMB = PhotoImage(data=pkgutil.get_data('asset', "bomb.png"))
-            self.FLAG = PhotoImage(data=pkgutil.get_data('asset', "flag.png"))
+        self.BOMB = PhotoImage(file="bomb.png")
+        self.FLAG = PhotoImage(file="flag.png")
         # Initiate flag Counter
         self.flag_counter = Counter(page.header, self.FLAG)
         self.flag_counter.pack(side=LEFT, padx=5)
@@ -231,12 +227,8 @@ class Activity:
     """
     def __init__(self):
         # Create bomb and flag picture
-        try:
-            self.BOMB = PhotoImage(file="bomb.png")
-            self.FLAG = PhotoImage(file="flag.png")
-        except:
-            self.BOMB = PhotoImage(data=pkgutil.get_data('asset', "bomb.png"))
-            self.FLAG = PhotoImage(data=pkgutil.get_data('asset', "flag.png"))
+        self.BOMB = PhotoImage(file="bomb.png")
+        self.FLAG = PhotoImage(file="flag.png")
         # Bind left mouse button to coord function
         page.root.bind("<Button-1>", self.onClick)
         # Bind right mouse button to flag function
@@ -512,11 +504,8 @@ class Slider(Frame):
 ######################################################
 def main():
     global page, board, action
-    try:
-        # Set file directory to asset folder
-        os.chdir(os.path.abspath(os.getcwd()) + "/asset")
-    except:
-        pass
+    # Set file directory to asset folder
+    os.chdir(os.path.abspath(os.getcwd()) + "/asset")
     # Initialize main game page
     page = Page()
     # Initialize game board
