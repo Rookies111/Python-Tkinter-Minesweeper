@@ -268,6 +268,9 @@ class Activity:
             page.root.unbind("<Button-3>")
             # Show game over messagebox
             messagebox.showerror(title="Game Over", message="Game Over")
+            # Reset the game
+            self.onReset()
+            
         elif mask[y][x] == 0:
             for x, y in self._all_safe_position(mask, x, y):
                 new_id = f".body.{y}{x}"
@@ -294,6 +297,8 @@ class Activity:
             page.root.unbind("<Button-3>")
             # Show game over messagebox
             messagebox.showinfo(title="Congratulations", message="Congratulations, You WIN.")
+            # Reset the game
+            self.onReset()
 
     def onFlag(self, event):
         """
