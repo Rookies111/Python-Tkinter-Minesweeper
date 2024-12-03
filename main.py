@@ -267,7 +267,7 @@ class Activity:
             page.root.unbind("<Button-1>")
             page.root.unbind("<Button-3>")
             # Show game over messagebox
-            # messagebox.showerror(title="Game Over", message="Game Over")
+            messagebox.showerror(title="Game Over", message="Game Over")
         elif mask[y][x] == 0:
             for x, y in self._all_safe_position(mask, x, y):
                 new_id = f".body.{y}{x}"
