@@ -33,8 +33,8 @@ class Page:
         toolbar = Menu(self.root)
         self.root.config(menu = toolbar)
         # Adding main menu bar
-        toolbar.add_command(label = "Config", command = self._config)
-        toolbar.add_command(label = "Statistic", command = self._statistic)
+        # toolbar.add_command(label = "Config", command = self._config)
+        # toolbar.add_command(label = "Statistic", command = self._statistic)
         # Create header Frame
         self.header = Frame(self.root)
         self.header.pack(fill=BOTH, padx=20, pady=5)
@@ -113,6 +113,7 @@ class Page:
             self._subpage()
         # Set the subpage title
         self._branch.title("Statistic")
+        self.footer.config(bg="#000")
 
 class Game:
     """
