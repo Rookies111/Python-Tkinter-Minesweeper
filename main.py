@@ -172,7 +172,7 @@ class Game:
                     # Add add number indicate surrounding bomb
                     mask[b][a] += 1
 
-        self._printBoard(mask)
+        # self._printBoard(mask)
 
         # Create button in the body Frame
         for i in range(self.dimension**2):
@@ -242,7 +242,7 @@ class Activity:
         if self._get_coord(event) == None:
             return
         widget, x, y = self._get_coord(event)
-        print(widget, x, y)
+        # print(widget, x, y)
         # Remove clicked button from that grid coordinate
         if widget["image"] != "":
             return
