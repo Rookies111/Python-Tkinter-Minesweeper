@@ -2,7 +2,7 @@
 #                    Import library                  #
 ######################################################
 import os
-import pkgutil
+import sys
 from random import choices, randint
 from tkinter import *
 from tkinter import messagebox
@@ -26,10 +26,7 @@ class Page:
         self.root = Tk()
         # Setting title, icon, and size
         self.root.title("Minesweeper")
-        try:
-            self.root.iconbitmap("icon.ico")
-        except:
-            self.root.iconbitmap(pkgutil.get_data('asset', "icon.ico"))
+        self.root.iconbitmap("icon.ico")
         self.root.geometry("-150+50")
         # self.root.geometry("500x400-10+10")
         self.root.resizable(False, False)
@@ -383,6 +380,16 @@ class Activity:
         # Add surrounding coordinate to checked list
         checked.extend(surround)
         return checked
+    
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 class Timer:
     """
@@ -505,7 +512,7 @@ class Slider(Frame):
 def main():
     global page, board, action
     # Set file directory to asset folder
-    os.chdir(os.path.abspath(os.getcwd()) + "/asset")
+    os.chdir(resource_path("./asset"))
     # Initialize main game page
     page = Page()
     # Initialize game board
