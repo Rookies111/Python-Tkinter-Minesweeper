@@ -6,6 +6,7 @@ import sys
 from random import choices, randint
 from tkinter import *
 from tkinter import messagebox
+from widget import *
 ######################################################
 #                       Variable                     #
 ######################################################
@@ -390,121 +391,6 @@ def resource_path(relative_path):
         base_path = os.path.abspath(".")
 
     return os.path.join(base_path, relative_path)
-
-class Timer:
-    """
-    Class for control Timer widget
-    """
-    # Function when initiate Timer
-    def __init__(self, master=None):
-        # Set default time and timer state
-        self.time = 0
-        self.state = False
-        # Create timer display
-        self.display = Label(
-            master, bg="#000", font="terminal 20 bold", fg="#FFF")
-        self.display.pack(pady=10, ipadx=10, ipady=10)
-        # Start timer clock loop
-        self.clock()
-
-    # Function to calculate time to minutes and seconds, then display it to Label
-    def clock(self):
-        # Add 1 to time variable
-        self.time += 1 if self.state else 0
-        # Calculate minutes and seconds from time
-        if self.time >= 3600: self.time = 0
-        minutes = str(self.time // 60).zfill(2)
-        seconds = str(self.time % 60).zfill(2)
-        # Display minutes and seconds to timer
-        self.display.config(text=f"{minutes}:{seconds}")
-        # Loop everything again
-        page.root.after(1000, self.clock)
-
-    # Function to start timer
-    def start(self):
-        self.state = True
-
-    # Function to stop timer
-    def stop(self):
-        self.state = False
-
-    # Function to reset timer
-    def reset(self):
-        self.time = 0
-
-class Counter(Frame):
-    """
-    Class for controlling Counter widget
-    """
-    # Function when initiate Counter
-    def __init__(self, master=None, icon=None, default: int=0):
-        # Create number variable
-        self.total = abs(default)
-        # Create background frame element
-        super().__init__(master)
-        # Create Counter icon
-        Label(self, image=icon).pack(pady=5)
-        # Create Counter display
-        txt = str(self.total).zfill(2)
-        self.display = Label(self, text=txt, bg="#000", font="terminal 16 bold", fg="#FFF")
-        self.display.pack(ipadx=5, ipady=5)
-
-    # Function to set Counter number
-    def set(self, number: int):
-        self.total = number
-        self.display.config(text=str(self.total).zfill(2))
-    
-    # Function to reset Counter number
-    def reset(self):
-        self.total = 0
-        self.display.config(text=str(self.total).zfill(2))
-
-    # Function to increment Counter number
-    def increse(self):
-        self.total += 1
-        self.display.config(text=str(self.total).zfill(2))
-
-    # Function to decrement Counter number
-    def decrese(self):
-        self.total -= 1
-        self.display.config(text=str(self.total).zfill(2))
-
-class Slider(Frame):
-    """
-    Class for controlling Slider Widget
-    """
-    # Function when initiate Counter
-    def __init__(self, master=None, from_=0, to=100, default=0, text=None):
-        # Create background frame element
-        super().__init__(master)
-        # Create value variable
-        self.value = StringVar(master, value=default)
-        # Create Entry Widget
-        self.display = Entry(self, textvariable=self.value, width=2, font="terminal 10")
-        self.display.pack(side=LEFT, ipadx=3, ipady=1, padx=5, pady=5)
-        # Create Scale Widget
-        self.slider = Scale(self, from_=from_, to=to, orient=HORIZONTAL, showvalue=False, variable=self.value)
-        self.slider.pack(side=LEFT, padx=2, pady=1)
-
-    def set_value(self, value):
-        self.value.set(value)
-
-    def get_value(self):
-        return self.value.get()
-
-    def disable(self):
-        self.slider.config(state=DISABLED)
-        self.display.config(state=DISABLED)
-    
-    def enable(self):
-        self.slider.config(state=NORMAL)
-        self.display.config(state=NORMAL)
-    
-    def toggle(self):
-        if self.slider['state'] == DISABLED:
-            self.enable()
-        else:
-            self.disable()
 
 ######################################################
 #                         GUI                        #

@@ -154,3 +154,4 @@ cython_debug/
 output/
 *.exe
 config.json
+*.code-workspace
